@@ -1,0 +1,7 @@
+{
+  "schemaVersion" : "v1",
+  "name" : "Example Ignite Extension",
+  "extensionId" : "ignite.extension.example",
+  "version" : "1.0.0",
+  "tags" : [ "feature", "experimental" ]
+}

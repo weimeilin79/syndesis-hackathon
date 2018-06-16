@@ -1,0 +1,42 @@
+{
+  "schemaVersion" : "v1",
+  "name" : "Example Ignite Extension",
+  "extensionId" : "ignite.extension.example",
+  "version" : "1.0.0",
+  "actions" : [ {
+    "id" : "Log-body",
+    "name" : "Log Body",
+    "description" : "A simple xml Body Log with a prefix",
+    "descriptor" : {
+      "kind" : "ENDPOINT",
+      "entrypoint" : "direct:log-xml",
+      "inputDataShape" : {
+        "kind" : "any"
+      },
+      "outputDataShape" : {
+        "kind" : "any"
+      },
+      "propertyDefinitionSteps" : [ {
+        "description" : "Define your Log message",
+        "name" : "Log Body",
+        "properties" : {
+          "prefix" : {
+            "kind" : "parameter",
+            "displayName" : "Log Prefix",
+            "required" : false,
+            "type" : "string",
+            "javaType" : "String",
+            "deprecated" : false,
+            "secret" : false,
+            "componentProperty" : false,
+            "description" : "The Log body prefix message"
+          }
+        }
+      } ],
+      "resource" : "classpath:META-INF/syndesis/extensions/log-body-action.xml"
+    },
+    "tags" : [ "xml" ],
+    "actionType" : "step"
+  } ],
+  "extensionType" : "Steps"
+}

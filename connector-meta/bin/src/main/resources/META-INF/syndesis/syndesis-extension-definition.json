@@ -1,0 +1,77 @@
+{
+  "schemaVersion" : "v1",
+  "name" : "Example Ignite Extension",
+  "extensionId" : "ignite.extension.example",
+  "version" : "1.0.0",
+  "actions" : [ {
+    "id" : "io.syndesis:telegram-chat-from-action",
+    "name" : "Chat Messages",
+    "description" : "Receive all messages sent to the chat bot",
+    "descriptor" : {
+      "componentScheme" : "telegram",
+      "inputDataShape" : {
+        "kind" : "none"
+      },
+      "outputDataShape" : {
+        "kind" : "java",
+        "type" : "org.apache.camel.component.telegram.model.IncomingMessage"
+      },
+      "configuredProperties" : {
+        "type" : "bots"
+      }
+    },
+    "actionType" : "connector",
+    "pattern" : "From"
+  }, {
+    "id" : "io.syndesis:telegram-chat-to-action",
+    "name" : "Send a chat Messages",
+    "description" : "Send a messages to the chat (through the bot).",
+    "descriptor" : {
+      "componentScheme" : "telegram",
+      "inputDataShape" : {
+        "kind" : "java",
+        "type" : "java.lang.String"
+      },
+      "outputDataShape" : {
+        "kind" : "none"
+      },
+      "propertyDefinitionSteps" : [ {
+        "description" : "Chat id",
+        "name" : "chatId",
+        "properties" : {
+          "chatId" : {
+            "kind" : "parameter",
+            "displayName" : "Chat Id",
+            "required" : false,
+            "type" : "string",
+            "javaType" : "String",
+            "deprecated" : false,
+            "secret" : false,
+            "componentProperty" : false,
+            "description" : "The telegram's Chat Id, if not set will use CamelTelegramChatId from the incoming exchange."
+          }
+        }
+      } ],
+      "configuredProperties" : {
+        "type" : "bots"
+      }
+    },
+    "actionType" : "connector",
+    "pattern" : "To"
+  } ],
+  "properties" : {
+    "authorizationToken" : {
+      "kind" : "property",
+      "displayName" : "Authorization Token",
+      "group" : "security",
+      "label" : "security",
+      "required" : true,
+      "type" : "string",
+      "javaType" : "java.lang.String",
+      "deprecated" : false,
+      "secret" : true,
+      "componentProperty" : false,
+      "description" : "Telegram Bot Authorization Token"
+    }
+  }
+}
